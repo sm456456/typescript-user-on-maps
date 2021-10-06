@@ -3,6 +3,7 @@ interface Mappable {
     lat: number;
     lng: number;
   };
+  markerContent(): string;
 }
 
 export class CustomMap {
@@ -10,7 +11,7 @@ export class CustomMap {
 
   constructor(divId: string) {
     this.googleMap = new google.maps.Map(document.getElementById(divId), {
-      zoom: 3,
+      zoom: 2,
       center: {
         lat: 0,
         lng: 0
@@ -19,12 +20,18 @@ export class CustomMap {
   }
 
   addMarker(mappable: Mappable): void {
-    new google.maps.Marker({
+    const marker = new google.maps.Marker({
       map: this.googleMap,
       position: {
         lat: mappable.location.lat,
         lng: mappable.location.lng
       }
     });
+    marker.addListener('click', () => {
+      const inforWindow = new google.maps.InfoWindow({
+        content: mappable.markerContent()
+      });
+      inforWindow.open(this.googleMap, marker);
+    })
   }
 }
