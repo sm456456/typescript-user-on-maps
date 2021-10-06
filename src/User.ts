@@ -18,6 +18,11 @@ export class User {
   }
 
   markerContent(): string {
-    return `User's security phrase: ${this.phrase}`;
+    return `
+    <div>
+    <h2> User ${this.name} </h2>
+    Our security phrase: ${this.phrase}
+    </div>
+    `;
   } 
 }

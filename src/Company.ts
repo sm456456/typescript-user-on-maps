@@ -18,6 +18,11 @@ export class Company {
   }
 
   markerContent(): string{
-    return `Company ${this.companyName}'s best product: ${this.description}`;
+    return `
+    <div>
+    <h2>Company ${this.companyName} </h2> 
+    We have the best product in the world: ${this.description}
+    </div>
+    `;
   }
 }
